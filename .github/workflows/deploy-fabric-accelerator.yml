@@ -78,12 +78,7 @@ jobs:
             FAB_TENANT_ID: ${{ secrets.TENANT_ID }}
           run: |
             fab auth logout || true
-            
-            fab auth login --service-principal \
-            --client-id $FAB_CLIENT_ID \
-            --client-secret $FAB_CLIENT_SECRET \
-            --tenant-id $FAB_TENANT_ID
-            
+            fab auth login --u $FAB_CLIENT_ID -p $FAB_CLIENT_SECRET --tenant $FAB_TENANT_ID
             fab config set encryption_fallback_enabled true
 
        # Create Fabric Capacity if it doesn't exist
