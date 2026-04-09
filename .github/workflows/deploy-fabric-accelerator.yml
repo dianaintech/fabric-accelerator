@@ -68,19 +68,14 @@ jobs:
        
        # Install Fabric CLI 
         - name: Install Fabric CLI
-          run: pip install ms-fabric-cli
+          run: pip install ms-fabric-cli==1.3.1
 
        # Authenticate using Service Principal
         - name: Authenticate to Fabric
-          env: 
-            FAB_CLIENT_ID: ${{ secrets.ACTION_SPN_CLIENTID }}
-            FAB_CLIENT_SECRET: ${{ secrets.ACTION_SPN_SECRET }}
-            FAB_TENANT_ID: ${{ secrets.TENANT_ID }}
-            FAB_ENCRYPTION_FALLBACK_ENABLED: true
           run: |
-            fab auth logout || true
-            fab auth login -u $FAB_CLIENT_ID -p $FAB_CLIENT_SECRET --tenant $FAB_TENANT_ID
-
+            fab config set encryption_fallback_enabled true
+            fab auth login -u ${{ secrets.ACTION_SPN_CLIENTID }} -p ${{ secrets.ACTION_SPN_SECRET }} --tenant ${{ secrets.TENANT_ID }} 
+        
        # Create Fabric Capacity if it doesn't exist
         - name: Create Fabric Capacity if it doesn't exist
           run: |
