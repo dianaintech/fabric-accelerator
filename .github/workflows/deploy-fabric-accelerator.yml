@@ -69,11 +69,14 @@ jobs:
        # Install Fabric CLI 
         - name: Install Fabric CLI
           run: pip install ms-fabric-cli==1.3.1
-
+          
+       # Set plaintext token fallback BEFORE login
+        - name: Enable plaintext auth token fallback
+          run: fab config set encryption_fallback_enabled true
+          
        # Authenticate using Service Principal
         - name: Authenticate to Fabric
           run: |
-            fab config set encryption_fallback_enabled true
             fab auth login -u ${{ secrets.ACTION_SPN_CLIENTID }} -p ${{ secrets.ACTION_SPN_SECRET }} --tenant ${{ secrets.TENANT_ID }} 
         
        # Create Fabric Capacity if it doesn't exist
