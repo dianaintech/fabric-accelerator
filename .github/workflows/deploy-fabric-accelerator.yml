@@ -6,7 +6,7 @@ env:
   FABRIC_CAPACITY_SKU: F2
   FABRIC_CAPACITY_ADMIN_ID: 1ac484c3-7632-4da0-a546-554694a11c33
   RESOURCE_GROUP: rg-test
-  WORKSPACE_NAME: FabricAccelerator
+  WORKSPACE_NAME: FabricAccelerator-part2
   WORKSPACE_ADMIN_ID: 1ac484c3-7632-4da0-a546-554694a11c33
   WORKSPACE_ADMIN_TYPE: user # valid values: user, group
   FABRIC_SQL_DB_NAME: controldb-fabric-accelerator
